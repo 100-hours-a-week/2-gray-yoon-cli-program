@@ -1,27 +1,31 @@
 package cafe.menu;
 
+import cafe.menu.bakery.Bakery;
+import cafe.menu.baverage.Beverage;
+import cafe.menu.baverage.Coffee;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
-    public static final List<MenuItem> beverageMenu = List.of(
-            new MenuItem("에스프레소", 3200),
-            new MenuItem("아메리카노", 3900),
-            new MenuItem("카푸치노", 4500),
-            new MenuItem("라떼", 5200),
-            new MenuItem("그린티", 2600),
-            new MenuItem("얼그레이", 3200),
-            new MenuItem("허브티", 3600)
+    public static final List<Beverage> beverageMenu = List.of(
+            new Coffee("에스프레소", 3200, 1),
+            new Coffee("아메리카노", 3900, 1),
+            new Coffee("카푸치노", 4500, 1),
+            new Coffee("라떼", 5200, 1),
+            new Beverage("그린티", 2600, 0),
+            new Beverage("얼그레이", 3200, 0),
+            new Beverage("허브티", 3600, 0),
+            new Beverage("아이스티", 3000, 0)
     );
-    public static final List<MenuItem> bakeryMenu = List.of(
-            new MenuItem("초콜릿 칩 쿠키", 1900),
-            new MenuItem("오트밀 쿠키", 2300),
-            new MenuItem("피넛버터 쿠키", 2600),
-            new MenuItem("더블 초콜릿 쿠키", 2800),
-            new MenuItem("크루아상", 3900),
-            new MenuItem("베이글", 3200)
+    public static final List<Bakery> bakeryMenu = List.of(
+            new Bakery("초콜릿 칩 쿠키", 1900),
+            new Bakery("오트밀 쿠키", 2300),
+            new Bakery("피넛버터 쿠키", 2600),
+            new Bakery("더블 초콜릿 쿠키", 2800),
+            new Bakery("크루아상", 3900),
+            new Bakery("베이글", 3200)
     );
 
     public void displayBakeryMenus() {
@@ -32,7 +36,6 @@ public class Menu {
             MenuItem menuItem = bakeryMenu.get(i - 1);
             System.out.println(i + ". " + menuItem.toString());
         }
-        System.out.println("--------------------------\n");
     }
 
     public void displayBeverageMenus() {
@@ -51,7 +54,7 @@ public class Menu {
         System.out.println("--------------------------");
         System.out.println("1. 음료");
         System.out.println("2. 베이커리");
-        System.out.println("3. 종료(선택 시 더이상 주문할 수 없습니다.)");
+        System.out.println("3. 종료 (선택 시 더이상 주문할 수 없습니다.)");
         System.out.println("--------------------------");
         System.out.print("번호를 입력해주세요: ");
         category = scanner.nextInt();
@@ -67,10 +70,29 @@ public class Menu {
         }
 
         int menuChoice;
-        System.out.print("메뉴를 선택해주세요 (1 ~ " + ((category == 1) ? beverageMenu.size() : bakeryMenu.size()) + "번 중 선택): ");
+        System.out.print("\n메뉴를 선택해주세요 (1 ~ " + ((category == 1) ? beverageMenu.size() : bakeryMenu.size()) + "번 중 선택): ");
         menuChoice = scanner.nextInt();
 
-        return (category == 1) ? beverageMenu.get(menuChoice - 1) : bakeryMenu.get(menuChoice - 1);
+        MenuItem selected =  (category == 1) ? beverageMenu.get(menuChoice - 1) : bakeryMenu.get(menuChoice - 1);
+
+        if (category == 1) {
+            System.out.println("\n샷을 추가하시겠습니까?");
+            System.out.println("1. 네, 2. 아니요");
+            System.out.print("번호를 입력해주세요: ");
+            int choice = scanner.nextInt();
+
+            if (choice == 2) {
+                return selected;
+            }
+
+            System.out.print("\n개수를 입력해주세요.(추가 요금 1샷 - " + Beverage.SHOT_PRICE + "원): ");
+            int extraShots = scanner.nextInt();
+            System.out.println("샷 " + extraShots + "개(+" + (Beverage.SHOT_PRICE * extraShots) + "원)가 추가되었습니다.\n");
+
+            ((Beverage) selected).addShot(extraShots);
+        }
+
+        return selected;
     }
 
     public int getQuantity(MenuItem menu) {

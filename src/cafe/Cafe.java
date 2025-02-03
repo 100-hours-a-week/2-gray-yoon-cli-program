@@ -12,7 +12,7 @@ public class Cafe {
 
     public void open() {
         System.out.println("|   OO카페에 오신것을 환영합니다  |");
-        System.out.println("|   ☕️ 메뉴를 확인해주세요 🥐   |\n");
+        System.out.println("|   ☕️ 메뉴를 확인해주세요 🥐   |");
 
         menu.displayBeverageMenus();
         menu.displayBakeryMenus();
