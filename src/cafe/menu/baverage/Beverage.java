@@ -4,6 +4,7 @@ import cafe.menu.MenuItem;
 
 public class Beverage extends MenuItem {
     public static final int SHOT_PRICE = 500;
+    public static final int MAX_SHOT_COUNT = 5;
     private int shotCount;
 
     public Beverage(String name, int price, int shotCount) {

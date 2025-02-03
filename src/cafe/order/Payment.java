@@ -1,10 +1,9 @@
 package cafe.order;
 
-import java.util.Scanner;
+import cafe.util.InputHandler;
 
 public class Payment {
     private int price;
-    private Scanner scanner = new Scanner(System.in);
 
     public Payment(int price) {
         this.price = price;
@@ -12,13 +11,11 @@ public class Payment {
 
     public int pay() {
         int amount;
-        System.out.print("지불할 금액을 입력해주세요(원): ");
-        amount = scanner.nextInt();
+        amount = InputHandler.getPositiveIntInput("지불할 금액을 입력해주세요(원): ");
 
         while (amount < price) {
             System.out.println("구매 금액보다 지불 금액이 적습니다.("+ price + "원)");
-            System.out.print("지불할 금액을 다시 입력해주세요(원): ");
-            amount = scanner.nextInt();
+            amount = InputHandler.getPositiveIntInput("지불할 금액을 다시 입력해주세요(원): ");
         }
 
         return amount;

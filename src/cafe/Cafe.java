@@ -7,8 +7,8 @@ import cafe.order.OrderItem;
 import cafe.order.Payment;
 
 public class Cafe {
-    private Menu menu = new Menu();
-    private Order orders = new Order();
+    private final Menu menu = new Menu();
+    private final Order orders = new Order();
 
     public void open() {
         System.out.println("|   OO카페에 오신것을 환영합니다  |");
