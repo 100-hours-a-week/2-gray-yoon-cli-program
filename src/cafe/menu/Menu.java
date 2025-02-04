@@ -3,7 +3,7 @@ package cafe.menu;
 import cafe.menu.bakery.Bakery;
 import cafe.menu.baverage.Beverage;
 import cafe.menu.baverage.Coffee;
-import cafe.util.InputHandler;
+import util.InputHandler;
 
 import java.util.List;
 

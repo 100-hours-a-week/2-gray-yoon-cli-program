@@ -1,6 +1,6 @@
 package cafe.order;
 
-import cafe.util.InputHandler;
+import util.InputHandler;
 
 public class Payment {
     private int price;
