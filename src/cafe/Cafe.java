@@ -20,6 +20,7 @@ public class Cafe {
     }
 
     public boolean order() {
+        // 주문한 메뉴가 있는지 확인하기 위한 값
         boolean result = false;
 
         while (true) {
@@ -31,6 +32,9 @@ public class Cafe {
             }
 
             result = true;
+
+            menu.displayCategoryMenuList(category);
+
             MenuItem selected = menu.selectMenu(category);
             int count = menu.getQuantity(selected);
 

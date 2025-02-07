@@ -3,6 +3,8 @@ package cafe.menu;
 import cafe.menu.beverage.Beverage;
 import util.InputHandler;
 
+import java.util.List;
+
 public class Menu {
     public static final int MAX_ORDER_COUNT = 10;
 
@@ -18,34 +20,57 @@ public class Menu {
     }
 
     public MenuItem selectMenu(int category) {
+        List<MenuItem> menuList = getCategoryMenuList(category);
+
+        int maxChoice = menuList.size();
+        int menuChoice = InputHandler.getIntInputInRange("\n메뉴를 선택해주세요 (1 ~ " + maxChoice + "번 중 선택): ", 1, maxChoice);
+        MenuItem selected =  menuList.get(menuChoice - 1);
+
+        boolean isAddShot = askShotOption(category);
+
+        if (!isAddShot) {
+            return selected;
+        }
+
+        addShot(selected);
+
+        return selected;
+    }
+
+    public void displayCategoryMenuList(int category) {
         if (category == 1) {
             MenuList.displayBeverageMenus();
         } else if (category == 2) {
             MenuList.displayBakeryMenus();
         }
+    }
 
-        int menuChoice;
-        int maxChoice = (category == 1) ? MenuList.beverageMenu.size() : MenuList.bakeryMenu.size();
-        menuChoice = InputHandler.getIntInputInRange("\n메뉴를 선택해주세요 (1 ~ " + maxChoice + "번 중 선택): ", 1, maxChoice);
+    private List<MenuItem> getCategoryMenuList(int category) {
+        if (category == 1) {
+            return MenuList.beverageMenu;
+        } else if (category == 2) {
+            return MenuList.bakeryMenu;
+        }
+        return null;
+    }
 
-        MenuItem selected =  (category == 1) ? MenuList.beverageMenu.get(menuChoice - 1) : MenuList.bakeryMenu.get(menuChoice - 1);
-
+    private boolean askShotOption(int category) {
         if (category == 1) {
             System.out.println("\n샷을 추가하시겠습니까?");
             System.out.println("1. 네, 2. 아니요");
             int choice = InputHandler.getIntInputInRange("번호를 입력해주세요: ", 1, 2);
 
-            if (choice == 2) {
-                return selected;
-            }
-
-            int extraShots = InputHandler.getIntInputInRange("\n개수를 입력해주세요.(추가 요금 1샷 - " + Beverage.SHOT_PRICE + "원, 최대 " + Beverage.MAX_SHOT_COUNT +"개): ", 0, Beverage.MAX_SHOT_COUNT);
-            System.out.println("샷 " + extraShots + "개(+" + (Beverage.SHOT_PRICE * extraShots) + "원)가 추가되었습니다.\n");
-
-            ((Beverage) selected).addShot(extraShots);
+            return choice == 1;
         }
 
-        return selected;
+        return false;
+    }
+
+    private void addShot(MenuItem menu) {
+        int extraShots = InputHandler.getIntInputInRange("\n개수를 입력해주세요.(추가 요금 1샷 - " + Beverage.SHOT_PRICE + "원, 최대 " + Beverage.MAX_SHOT_COUNT +"개): ", 0, Beverage.MAX_SHOT_COUNT);
+        System.out.println("샷 " + extraShots + "개(+" + (Beverage.SHOT_PRICE * extraShots) + "원)가 추가되었습니다.\n");
+
+        ((Beverage) menu).addShot(extraShots);
     }
 
     public int getQuantity(MenuItem menu) {

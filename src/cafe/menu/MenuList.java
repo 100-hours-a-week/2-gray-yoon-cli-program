@@ -7,7 +7,7 @@ import cafe.menu.beverage.Coffee;
 import java.util.List;
 
 public abstract class MenuList {
-    public static final List<Beverage> beverageMenu = List.of(
+    public static final List<MenuItem> beverageMenu = List.of(
             new Coffee("에스프레소", 3200, 1),
             new Coffee("아메리카노", 3900, 1),
             new Coffee("카푸치노", 4500, 1),
@@ -18,7 +18,7 @@ public abstract class MenuList {
             new Beverage("아이스티", 3000, 0)
     );
 
-    public static final List<Bakery> bakeryMenu = List.of(
+    public static final List<MenuItem> bakeryMenu = List.of(
             new Bakery("초콜릿 칩 쿠키", 1900),
             new Bakery("오트밀 쿠키", 2300),
             new Bakery("피넛버터 쿠키", 2600),
