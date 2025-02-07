@@ -2,6 +2,7 @@ package cafe;
 
 import cafe.menu.Menu;
 import cafe.menu.MenuItem;
+import cafe.menu.MenuList;
 import cafe.order.Order;
 import cafe.order.OrderItem;
 import cafe.order.Payment;
@@ -14,8 +15,8 @@ public class Cafe {
         System.out.println("|   OO카페에 오신것을 환영합니다  |");
         System.out.println("|   ☕️ 메뉴를 확인해주세요 🥐   |");
 
-        menu.displayBeverageMenus();
-        menu.displayBakeryMenus();
+        MenuList.displayBeverageMenus();
+        MenuList.displayBakeryMenus();
     }
 
     public boolean order() {
