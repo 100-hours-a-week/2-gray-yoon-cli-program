@@ -1,8 +1,8 @@
 package cafe.menu;
 
 import cafe.menu.bakery.Bakery;
-import cafe.menu.baverage.Beverage;
-import cafe.menu.baverage.Coffee;
+import cafe.menu.beverage.Beverage;
+import cafe.menu.beverage.Coffee;
 import util.InputHandler;
 
 import java.util.List;

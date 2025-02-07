@@ -1,4 +1,4 @@
-package cafe.menu.baverage;
+package cafe.menu.beverage;
 
 import cafe.menu.MenuItem;
 
