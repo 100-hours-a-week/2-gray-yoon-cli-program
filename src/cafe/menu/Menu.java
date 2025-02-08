@@ -20,7 +20,7 @@ public class Menu {
     }
 
     public MenuItem selectMenu(int category) {
-        List<MenuItem> menuList = getCategoryMenuList(category);
+        List<MenuItem> menuList = MenuList.getCategoryMenuList(category);
 
         int maxChoice = menuList.size();
         int menuChoice = InputHandler.getIntInputInRange("\n메뉴를 선택해주세요 (1 ~ " + maxChoice + "번 중 선택): ", 1, maxChoice);
@@ -36,23 +36,6 @@ public class Menu {
         }
 
         addShot(menu);
-    }
-
-    public void displayCategoryMenuList(int category) {
-        if (category == 1) {
-            MenuList.displayBeverageMenus();
-        } else if (category == 2) {
-            MenuList.displayBakeryMenus();
-        }
-    }
-
-    private List<MenuItem> getCategoryMenuList(int category) {
-        if (category == 1) {
-            return MenuList.beverageMenu;
-        } else if (category == 2) {
-            return MenuList.bakeryMenu;
-        }
-        return null;
     }
 
     private boolean askShotOption() {

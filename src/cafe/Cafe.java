@@ -31,7 +31,7 @@ public class Cafe {
             }
 
             // 선택 카테고리에 대한 메뉴 보여주기
-            menu.displayCategoryMenuList(category);
+            MenuList.displayCategoryMenuList(category);
 
             // 메뉴 선택
             MenuItem selected = menu.selectMenu(category);
