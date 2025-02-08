@@ -24,17 +24,18 @@ public class Menu {
 
         int maxChoice = menuList.size();
         int menuChoice = InputHandler.getIntInputInRange("\n메뉴를 선택해주세요 (1 ~ " + maxChoice + "번 중 선택): ", 1, maxChoice);
-        MenuItem selected =  menuList.get(menuChoice - 1);
 
-        boolean isAddShot = askShotOption(category);
+        return  menuList.get(menuChoice - 1);
+    }
+
+    public void selectShotOption(Beverage menu) {
+        boolean isAddShot = askShotOption();
 
         if (!isAddShot) {
-            return selected;
+            return;
         }
 
-        addShot(selected);
-
-        return selected;
+        addShot(menu);
     }
 
     public void displayCategoryMenuList(int category) {
@@ -54,16 +55,12 @@ public class Menu {
         return null;
     }
 
-    private boolean askShotOption(int category) {
-        if (category == 1) {
-            System.out.println("\n샷을 추가하시겠습니까?");
-            System.out.println("1. 네, 2. 아니요");
-            int choice = InputHandler.getIntInputInRange("번호를 입력해주세요: ", 1, 2);
+    private boolean askShotOption() {
+        System.out.println("\n샷을 추가하시겠습니까?");
+        System.out.println("1. 네, 2. 아니요");
+        int choice = InputHandler.getIntInputInRange("번호를 입력해주세요: ", 1, 2);
 
-            return choice == 1;
-        }
-
-        return false;
+        return choice == 1;
     }
 
     private void addShot(MenuItem menu) {

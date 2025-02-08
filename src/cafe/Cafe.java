@@ -3,6 +3,7 @@ package cafe;
 import cafe.menu.Menu;
 import cafe.menu.MenuItem;
 import cafe.menu.MenuList;
+import cafe.menu.beverage.Beverage;
 import cafe.order.Order;
 import cafe.order.OrderItem;
 import cafe.order.Payment;
@@ -24,6 +25,7 @@ public class Cafe {
         boolean result = false;
 
         while (true) {
+            // 카테고리(음료/베이커리/종료) 선택받기
             int category = menu.selectCategory();
 
             if (category == 3) {
@@ -33,9 +35,17 @@ public class Cafe {
 
             result = true;
 
+            // 선택 카테고리에 대한 메뉴 보여주기
             menu.displayCategoryMenuList(category);
 
+            // 메뉴 선택
             MenuItem selected = menu.selectMenu(category);
+
+            // 샷 추가
+            if (selected instanceof Beverage selectedBeverage) {
+                menu.selectShotOption(selectedBeverage);
+            }
+
             int count = menu.getQuantity(selected);
 
             orders.addItem(new OrderItem(count, selected));
