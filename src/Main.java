@@ -8,10 +8,7 @@ public class Main {
         cafe.open();
 
         // 주문 받기
-        if (!cafe.order()) {
-            cafe.close();
-            return;
-        }
+        cafe.order();
 
         // 주문 종료 후 주문 확인
         cafe.checkOrder();

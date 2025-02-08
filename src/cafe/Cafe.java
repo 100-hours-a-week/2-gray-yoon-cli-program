@@ -20,10 +20,7 @@ public class Cafe {
         MenuList.displayBakeryMenus();
     }
 
-    public boolean order() {
-        // 주문한 메뉴가 있는지 확인하기 위한 값
-        boolean result = false;
-
+    public void order() {
         while (true) {
             // 카테고리(음료/베이커리/종료) 선택받기
             int category = menu.selectCategory();
@@ -32,8 +29,6 @@ public class Cafe {
                 System.out.println("주문을 종료합니다!\n");
                 break;
             }
-
-            result = true;
 
             // 선택 카테고리에 대한 메뉴 보여주기
             menu.displayCategoryMenuList(category);
@@ -50,8 +45,6 @@ public class Cafe {
 
             orders.addItem(new OrderItem(count, selected));
         }
-
-        return result;
     }
 
     public void checkOrder() {
@@ -59,6 +52,10 @@ public class Cafe {
     }
 
     public void calculatePayment() {
+        if (orders.getOrdersCount() == 0) {
+            return;
+        }
+
         Payment payment = new Payment(orders.getTotalPrice());
         int amount =  payment.pay();
         payment.calculateChange(amount);

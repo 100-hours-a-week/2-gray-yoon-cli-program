@@ -21,6 +21,10 @@ public class Order {
     }
 
     public void displayOrders() {
+        if (getOrdersCount() == 0) {
+            return;
+        }
+
         System.out.println("--------------------------");
         System.out.println("          주문 확인         ");
         for (int i = 1; i < orders.size() + 1; i++) {
@@ -30,5 +34,9 @@ public class Order {
         System.out.println("--------------------------");
         System.out.println("총 합계: " + getTotalPrice() + "원");
         System.out.println("--------------------------");
+    }
+
+    public int getOrdersCount() {
+        return orders.size();
     }
 }
