@@ -17,6 +17,6 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return item.toString() + ", " + count + "개, 합계: " + getTotalPrice() + "원";
+        return item.toString() + " - " + count + "개, 합계: " + getTotalPrice() + "원";
     }
 }

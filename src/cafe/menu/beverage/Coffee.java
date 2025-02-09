@@ -7,6 +7,6 @@ public class Coffee extends Beverage {
 
     @Override
     public int getPrice() {
-        return super.getPrice() - SHOT_PRICE;
+        return super.getPrice() + (getShotCount() - 1) * SHOT_PRICE;
     }
 }

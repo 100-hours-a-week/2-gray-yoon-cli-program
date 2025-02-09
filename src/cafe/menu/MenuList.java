@@ -1,8 +1,8 @@
 package cafe.menu;
 
 import cafe.menu.bakery.Bakery;
-import cafe.menu.beverage.Beverage;
 import cafe.menu.beverage.Coffee;
+import cafe.menu.beverage.Tea;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +14,10 @@ public abstract class MenuList {
             new Coffee("아메리카노", 3900, 1),
             new Coffee("카푸치노", 4500, 1),
             new Coffee("라떼", 5200, 1),
-            new Beverage("그린티", 2600, 0),
-            new Beverage("얼그레이", 3200, 0),
-            new Beverage("허브티", 3600, 0),
-            new Beverage("아이스티", 3000, 0)
+            new Tea("그린티", 2600, 0),
+            new Tea("얼그레이", 3200, 0),
+            new Tea("허브티", 3600, 0),
+            new Tea("아이스티", 3000, 0)
     ));
 
     public static final ArrayList<MenuItem> bakeryMenu = new ArrayList<>(Arrays.asList(

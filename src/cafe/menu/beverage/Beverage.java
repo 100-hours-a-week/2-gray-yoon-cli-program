@@ -16,9 +16,8 @@ public class Beverage extends MenuItem {
         shotCount += count;
     }
 
-    @Override
-    public int getPrice() {
-        return super.getPrice() + shotCount * SHOT_PRICE;
+    protected int getShotCount() {
+        return shotCount;
     }
 
     @Override
