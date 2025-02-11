@@ -62,6 +62,6 @@ public class Cafe {
     }
 
     public void close() {
-        System.out.println("감사합니다. 즐거운 하루 되세요 🍀");
+        System.out.println("\n감사합니다. 즐거운 하루 되세요 🍀");
     }
 }

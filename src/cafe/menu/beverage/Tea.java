@@ -6,7 +6,7 @@ public class Tea extends Beverage {
     }
 
     @Override
-    public int getPrice() {
-        return super.getPrice() + getShotCount() * SHOT_PRICE;
+    protected int calculateShotPrice() {
+        return getShotCount() * SHOT_PRICE;
     }
 }
